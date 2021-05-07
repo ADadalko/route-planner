@@ -1,0 +1,20 @@
+#gridHead, .order{
+  display: grid;
+  grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% ;
+  justify-items: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.orderActions button{
+  width: 10vw;
+}
+
+#gridHead{
+  padding: 1vw;
+}
+
+.order{
+  margin: 1vw;
+  border: 2px solid black;
+}

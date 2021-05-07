@@ -1,0 +1,23 @@
+<div *ngIf="(orders | async) as orders">
+  <div *ngIf="orders[0]">
+    <h3>Список завершенных доставок в этот магазин</h3>
+    <div id="gridHead">
+      <h4>Дата заказа</h4>
+      <h4>Водитель</h4>
+      <h4>Авто</h4>
+      <h4>Название отправления</h4>
+      <h4>Вес отправления</h4>
+      <h4>Место отправки</h4>
+      <h4>Сумма заказа</h4>
+    </div>
+    <div class="order" *ngFor="let order of orders">
+      <h4>{{order.date.toDate() | date: 'short'}}</h4>
+      <h4>{{order.driver.secondName}} {{order.driver.firstName}}</h4>
+      <h4>{{order.auto.model}}</h4>
+      <h4>{{order.good.name}}</h4>
+      <h4>{{order.good.weight}}</h4>
+      <h4>{{order.place.address}}</h4>
+      <h4>{{order.price}}</h4>
+    </div>
+  </div>
+</div>

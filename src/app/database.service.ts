@@ -10,6 +10,7 @@ import firebase from 'firebase';
 import Timestamp = firebase.firestore.Timestamp;
 import OrderByDirection = firebase.firestore.OrderByDirection;
 import WhereFilterOp = firebase.firestore.WhereFilterOp;
+import {Request} from './models/request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -200,5 +201,39 @@ export class DatabaseService {
     }
     if(parseInt(value)) return this.db.collection<Order>('orders', ref => ref.where(key, symb, parseInt(value))).valueChanges()
     else return this.db.collection<Order>('orders', ref => ref.where(key, symb, value)).valueChanges()
+  }
+
+  getRequests(): Observable<Request[]> {
+    return this.db.collection<Request>('requests').valueChanges()
+  }
+
+  getOrdersById(id: string): Observable<Order[]> {
+    return this.db.collection<Order>('orders', ref => ref.where('place.id', '==', parseInt(id))).valueChanges()
+  }
+
+  getRequestsById(id: string): Observable<Request[]> {
+    return this.db.collection<Request>('requests', ref => ref.where('id', '==', parseInt(id))).valueChanges()
+  }
+
+  addRequest(productName: string, pid: string, length: number) {
+    let place: Place;
+    this.db.collection<Place>('places', ref => ref.where('id', '==', parseInt(pid))).get().toPromise().then(data=>{
+      data.forEach(data=>{
+        place = data.data()
+      })
+    }).then(()=>{
+      let dbid = this.db.createId()
+      this.db.collection<Request>('requests').doc(dbid).set({
+        dbid: dbid,
+        date: Timestamp.now(),
+        id: parseInt(pid),
+        place: place,
+        product: productName
+      })
+    })
+  }
+
+  deleteRequest(dbid: string) {
+    this.db.collection<Request>('requests').doc(dbid).delete()
   }
 }

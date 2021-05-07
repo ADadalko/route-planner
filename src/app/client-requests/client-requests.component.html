@@ -1,0 +1,29 @@
+<h3>Запросы на доставку</h3>
+<h3 *ngIf="!editRequest">Добавьте новый запрос</h3>
+<h3 *ngIf="editRequest">Измените информацию о запросе</h3>
+<form [formGroup]="form">
+  <input type="hidden" #previousId>
+  <input type="text" #productName placeholder="Название товара" formControlName="productName">
+</form>
+<button *ngIf="!editRequest"
+        (click)="addRequest(productName.value)"
+        [disabled]="form.invalid">Добавить запрос
+</button>
+<button (click)="clearForm()">Очистить форму</button>
+<div *ngIf="(requests | async) as requests">
+  <div *ngIf="requests[0]">
+    <h3>Список созданных запросов</h3>
+    <div id="gridHead">
+      <h4>Дата запроса</h4>
+      <h4>Название товара</h4>
+      <h4>Действия</h4>
+    </div>
+    <div class="request" *ngFor="let request of requests">
+      <h4>{{request.date.toDate() | date: 'medium'}}</h4>
+      <h4>{{request.product}}</h4>
+      <h4 class="requestActions">
+        <button (click)="deleteRequest(request.dbid)">Удалить</button>
+      </h4>
+    </div>
+  </div>
+</div>

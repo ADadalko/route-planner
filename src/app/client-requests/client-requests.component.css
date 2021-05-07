@@ -1,0 +1,20 @@
+#gridHead, .request{
+  display: grid;
+  grid-template-columns:33.3% 33.3% 33.3%;
+  justify-items: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.requestActions button{
+  width: 10vw;
+}
+
+#gridHead{
+  padding: 1vw;
+}
+
+.request{
+  margin: 1vw;
+  border: 2px solid black;
+}

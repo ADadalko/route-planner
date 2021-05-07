@@ -1,0 +1,31 @@
+<form *ngIf="!isLogged" [formGroup]="form">
+  <h3>Войдите в аккаунт</h3>
+  <input formControlName="email" #email>
+  <input type="password" formControlName="password" #password>
+  <button [disabled]="form.invalid" (click)="submitForm(email.value, password.value)">Войти</button>
+</form>
+<div *ngIf='isLogged == root'>
+  <h1><a [routerLink]="'/'">Планирование транспортных маршрутов</a></h1>
+  <h2>
+    <a [routerLink]="'/'"><i class="material-icons">map</i></a>
+    <a [routerLink]="'/auto'"><i class="material-icons">local_shipping</i></a>
+    <a [routerLink]="'/place'"><i class="material-icons">place</i></a>
+    <a [routerLink]="'/goods'"><i class="material-icons">work</i></a>
+    <a [routerLink]="'/drivers'"><i class="material-icons">people</i></a>
+    <a [routerLink]="'/list'"><i class="material-icons">list_alt</i></a>
+    <a [routerLink]="'/requests'"><i class="material-icons">contact_support</i></a>
+    <a (click)="logOut()"><i class="material-icons">logout</i></a>
+  </h2>
+  <router-outlet></router-outlet>
+</div>
+<div *ngIf="isLogged == store1 || isLogged == store5 || isLogged == store6 || isLogged == store7 || isLogged == store10 ||
+ isLogged == store2 || isLogged == store3 || isLogged == store4 || isLogged == store8 || isLogged == store9 || isLogged == store11 ">
+  <h1><a>Планирование транспортных маршрутов</a></h1>
+  <h2>
+    <a (click)="view = 'clist'"><i class="material-icons">list_alt</i></a>
+    <a (click)="view = 'crequests'"><i class="material-icons">contact_support</i></a>
+    <a (click)="logOut()"><i class="material-icons">logout</i></a>
+  </h2>
+  <app-client-requests *ngIf="view == 'crequests'"></app-client-requests>
+  <app-client-orders-list *ngIf="view == 'clist'"></app-client-orders-list>
+</div>
