@@ -1,0 +1,39 @@
+#gridHead, .order{
+  display: grid;
+  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% ;
+  justify-items: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.orderActions button{
+  width: 10vw;
+}
+
+#gridHead{
+  padding: 1vw;
+}
+
+.order{
+  margin: 1vw;
+  border: 2px solid black;
+}
+
+select{
+  font-size: 1vw;
+  margin-bottom: 1vw;
+  width: 25vw;
+}
+
+input{
+  width: 25vw;
+}
+
+#grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#grid h4{
+  padding: 1vw;
+}

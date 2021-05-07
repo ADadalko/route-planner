@@ -1,1 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+  background-color: #D1D1D1;
+  font-family: "Yu Gothic UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #b8b8b8;
+}
+
+a{
+  text-decoration: none;
+}
+
+h3{
+  color: #000000CC;
+  text-align: center;
+  padding: 10px;
+  font-size: 2vw;
+}
+
+h4{
+  color: #000000CC;
+  font-size: 1vw;
+}
+
+button{
+  margin: 0.5vw auto;
+  font-size: 1vw;
+  display: block;
+  border-radius: 5px;
+  border: 2px solid #000000cc;
+  background-color: #b8b8b8;
+  color: #000000cc;
+  padding: 0.5vw;
+  transition: 0.3s;
+}
+
+button:active{
+  opacity: 0.5;
+}
+
+button:disabled{
+  opacity: 0.5;
+}
+
+input{
+  display: block;
+  color: #000000cc;
+  background-color: #b8b8b8;
+  border: 2px solid #000000cc;
+  border-radius: 5px;
+  padding-left: 10px;
+  width: 200px;
+  height: 30px;
+  margin: 5px auto;
+}
+
+select{
+  width: 30vw;
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  font-size: 1vw;
+}
+
+option{
+  color: black;
+}

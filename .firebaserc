@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "course-project-c109e": {
+      "hosting": {
+        "Course": [
+          "course-project-c109e"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+h1{
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  font-size: 30px;
+}
+
+h2{
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+
+h2 i{
+  font-size: 40px;
+}
+
+i, a{
+  background-color: rgba(0, 0, 0, 0);
+  transition: 0.3s;
+  margin-right: 10px;
+}
+
+a:hover{
+  opacity: 0.5;
+}

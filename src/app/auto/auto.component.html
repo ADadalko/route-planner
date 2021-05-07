@@ -1,0 +1,46 @@
+<h3>Автомобильный парк</h3>
+<h3 *ngIf="!editAuto">Добавьте новый автомобиль</h3>
+<h3 *ngIf="editAuto">Измените информацию об автомобиле</h3>
+<form [formGroup]="form">
+  <input type="hidden" #previousModel>
+  <input type="text" #model placeholder="Модель" formControlName="model">
+  <input type="number" #rate placeholder="Цена поeздки(руб/км)" formControlName="rate" min="1" max="100">
+  <input type="number" #quantity placeholder="Количество доступных единиц" formControlName="quantity" min="1" max="100">
+  <input type="number" #liftCapacity placeholder="Грузоподъемность(кг)" formControlName="liftCapacity" min="1"
+         max="1000">
+</form>
+<button *ngIf="!editAuto"
+        (click)="addAuto(model.value, rate.value, quantity.value, liftCapacity.value)"
+        [disabled]="form.invalid">Добавить Авто
+</button>
+<button
+  *ngIf="editAuto"
+  (click)="editAutoInfo(model.value, rate.value, quantity.value, liftCapacity.value, previousModel.value)"
+  [disabled]="form.invalid">
+  Изменить информацию
+</button>
+<button (click)="clearForm()">Очистить форму</button>
+<div *ngIf="(autos | async) as autos">
+  <div *ngIf="autos[0]">
+    <h3>Список автомобилей в парке</h3>
+    <div id="gridHead">
+      <h4>Модель</h4>
+      <h4>Тариф(руб/км)</h4>
+      <h4>Вместимость(кг)</h4>
+      <h4>Количество</h4>
+      <h4>Действия</h4>
+    </div>
+    <div class="auto" *ngFor="let auto of autos">
+      <h4>{{auto.model}}</h4>
+      <h4>{{auto.rate}}</h4>
+      <h4>{{auto.liftCapacity}}</h4>
+      <h4>{{auto.quantity}}</h4>
+      <h4 class="autoActions">
+        <button (click)="editAuto = true; previousModel.value = auto.model">Редактировать</button>
+        <button (click)="deleteAuto(auto.model)">Удалить</button>
+        <button (click)="increaseQuantity(auto.quantity, auto.model)">+</button>
+        <button (click)="decreaseQuantity(auto.quantity, auto.model)">-</button>
+      </h4>
+    </div>
+  </div>
+</div>

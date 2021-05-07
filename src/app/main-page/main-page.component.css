@@ -1,0 +1,16 @@
+img{
+  width: 20%;
+  transition: 0.2s;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 2vw;
+}
+
+img:hover{
+  opacity: 0.8;
+}
+
+h4{
+  text-align: center;
+}

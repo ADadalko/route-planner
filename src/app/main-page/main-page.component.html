@@ -1,0 +1,24 @@
+<h3>Создайте новое отправление</h3>
+<img id="imgToTransform" (click)="transformImg()" src="./assets/SharedScreenshot.jpg">
+<h4>Выберите водителя</h4>
+<select [(ngModel)]="selectedDriver" name="driver">
+  <option [defaultSelected]="true" value="" disabled>Выберите водителя</option>
+  <option *ngFor="let driver of (drivers | async)" [ngValue]="driver">{{driver.secondName}} {{driver.firstName}}</option>
+</select>
+<h4>Выберите место доставки</h4>
+<select [(ngModel)]="selectedPlace" name="place">
+  <option value="" disabled>Выберите место доставки</option>
+  <option *ngFor="let place of (places | async)" [ngValue]="place">{{place.id}}. {{place.address}}</option>
+</select>
+<h4>Выберите авто</h4>
+<select [(ngModel)]="selectedAuto" name="auto">
+  <option value="" disabled>Выберите авто</option>
+  <option *ngFor="let auto of (autos | async)" [ngValue]="auto">{{auto.model}}</option>
+</select>
+<h4>Выберите груз</h4>
+<select [(ngModel)]="selectedGood" name="good">
+  <option value="" disabled>Выберите груз</option>
+  <option *ngFor="let good of (goods | async)" [ngValue]="good">{{good.name}}</option>
+</select>
+<h4 *ngIf="(selectedPlace && selectedAuto)">Цена перевозки - {{selectedAuto?.rate * selectedPlace?.distance}} рублей</h4>
+<button [disabled]="!(selectedDriver && selectedPlace && selectedGood && selectedAuto)" (click)="addOrder()">Создать отправление</button>

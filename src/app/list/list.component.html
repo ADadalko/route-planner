@@ -1,0 +1,57 @@
+<div *ngIf="(orders | async) as orders">
+  <div *ngIf="orders[0]">
+    <h3>Список заказов на доставку</h3>
+    <div id="gridHead">
+      <h4>Дата заказа</h4>
+      <h4>Водитель</h4>
+      <h4>Авто</h4>
+      <h4>Название отправления</h4>
+      <h4>Вес отправления</h4>
+      <h4>Место отправки</h4>
+      <h4>Сумма заказа</h4>
+      <h4>Действия</h4>
+    </div>
+    <div class="order" *ngFor="let order of orders">
+      <h4>{{order.date.toDate() | date: 'short'}}</h4>
+      <h4>{{order.driver.secondName}} {{order.driver.firstName}}</h4>
+      <h4>{{order.auto.model}}</h4>
+      <h4>{{order.good.name}}</h4>
+      <h4>{{order.good.weight}}</h4>
+      <h4>{{order.place.address}}</h4>
+      <h4>{{order.price}}</h4>
+      <h4 class="orderActions">
+        <button (click)="deleteOrder(order.id)">Отменить заказ</button>
+      </h4>
+    </div>
+    <div id="grid">
+      <div>
+        <h4 style="text-align: center">Фильтрация</h4>
+        <select [(ngModel)]="selectedKey">
+          <option value="" disabled>Выберите категорию сравнения</option>
+          <option value="driver.secondName">Фамилия водителя</option>
+          <option value="auto.model">Модель авто</option>
+          <option value="good.name">Название отправления</option>
+          <option value="good.weight">Вес отправления</option>
+          <option value="price">Сумма заказа</option>
+        </select>
+        <select [(ngModel)]="selectedSymbol">
+          <option value="" disabled>Выберите оператор сравнения</option>
+          <option value="==">Равно</option>
+          <option value=">">Больше</option>
+          <option value="<">Меньше</option>
+          <option value=">=">Больше либо равно</option>
+          <option value="<=">Меньше либо равно</option>
+          <option value="!=">Не равно</option>
+        </select>
+        <input placeholder="Введите значение" [(ngModel)]="selectedValue">
+        <button (click)="filterOrders(selectedKey, selectedSymbol, selectedValue)">Фильтровать</button>
+        <button (click)="clearFilters()">Очистить фильтры</button>
+      </div>
+      <div>
+        <button (click)="sortByDate()">Сортировка по дате</button>
+        <button (click)="sortBySum()">Сортировка по сумме заказа</button>
+        <button (click)="sortByWeight()">Сортировка по массе заказа</button>
+      </div>
+    </div>
+  </div>
+</div>

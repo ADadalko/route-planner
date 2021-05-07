@@ -1,0 +1,25 @@
+img{
+  width: 40%;
+  border-radius: 5px;
+}
+
+#gridHead, .driver{
+  display: grid;
+  grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
+  justify-items: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.driverActions button{
+  width: 10vw;
+}
+
+#gridHead{
+  padding: 1vw;
+}
+
+.driver{
+  margin: 1vw;
+  border: 2px solid black;
+}

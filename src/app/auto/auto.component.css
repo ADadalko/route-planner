@@ -1,0 +1,20 @@
+#gridHead, .auto{
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  justify-items: center;
+  align-items: center;
+}
+
+#gridHead{
+  padding: 1vw;
+}
+
+.autoActions button{
+  width: 10vw;
+}
+
+.auto{
+  margin: 1vw;
+  border: 2px solid black;
+}

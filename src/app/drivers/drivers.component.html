@@ -1,0 +1,49 @@
+<h3>Водители</h3>
+<h3 *ngIf="!editDriver">Добавьте нового водителя</h3>
+<h3 *ngIf="editDriver">Измените информацию о водителе</h3>
+<form [formGroup]="form">
+  <input type="hidden" #previousName>
+  <input type="text" #firstName placeholder="Имя" formControlName="firstName">
+  <input type="text" #secondName placeholder="Фамилия" formControlName="secondName">
+  <input type="text" #thirdName placeholder="Отчество" formControlName="thirdName">
+  <input type="text" #photo placeholder="Ссылка на фото" formControlName="photoUrl">
+  <input type="number" #age placeholder="Возраст" formControlName="age" min="18" max="99">
+  <input type="number" #experience placeholder="Стаж" formControlName="experience" min="1" max="99">
+</form>
+<button *ngIf="!editDriver"
+        (click)="addDriver(firstName.value, secondName.value, thirdName.value, photo.value, age.value, experience.value)"
+        [disabled]="form.invalid">Добавить водителя
+</button>
+<button
+  *ngIf="editDriver"
+  (click)="editDriverInfo(firstName.value, secondName.value, thirdName.value, photo.value, age.value, experience.value, previousName.value)"
+  [disabled]="form.invalid">
+  Изменить информацию
+</button>
+<button (click)="clearForm()">Очистить форму</button>
+<div *ngIf="(drivers | async) as drivers">
+  <div *ngIf="drivers[0]">
+    <h3>Список зарегистрированных водителей</h3>
+    <div id="gridHead">
+      <h4>Имя</h4>
+      <h4>Фамилия</h4>
+      <h4>Отчество</h4>
+      <h4>Возраст</h4>
+      <h4>Опыт работы</h4>
+      <h4>Фотография</h4>
+      <h4>Действия</h4>
+    </div>
+    <div class="driver" *ngFor="let driver of drivers">
+      <h4>{{driver.firstName}}</h4>
+      <h4>{{driver.secondName}}</h4>
+      <h4>{{driver.thirdName}}</h4>
+      <h4>{{driver.age}}</h4>
+      <h4>{{driver.experience}}</h4>
+      <img [src]="driver.photoUrl">
+      <h4 class="driverActions">
+        <button (click)="editDriver = true; previousName.value = driver.secondName">Редактировать</button>
+        <button (click)="deleteDriver(driver.secondName)">Удалить</button>
+      </h4>
+    </div>
+  </div>
+</div>

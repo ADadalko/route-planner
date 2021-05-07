@@ -1,0 +1,4 @@
+<h3>Места доставки</h3>
+<div *ngFor="let place of (places | async)">
+  <h4>{{place.id}}. {{place.address}}. Дистанция(км): {{place.distance}}</h4>
+</div>

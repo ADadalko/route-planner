@@ -1,0 +1,20 @@
+#gridHead, .good{
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  justify-items: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+#gridHead{
+  padding: 1vw;
+}
+
+.goodActions button{
+  width: 10vw;
+}
+
+.good{
+  margin: 1vw;
+  border: 2px solid black;
+}

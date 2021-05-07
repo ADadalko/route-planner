@@ -1,0 +1,41 @@
+<h3>Груз</h3>
+<h3 *ngIf="!editGood">Добавьте новый груз</h3>
+<h3 *ngIf="editGood">Измените информацию о грузе</h3>
+<form [formGroup]="form">
+  <input type="hidden" #previousName>
+  <input type="text" #name placeholder="Название груза" formControlName="name">
+  <input type="number" min="0" max="1000" #weight placeholder="Вес(кг)" (input)="setType()" formControlName="weight">
+  <input type="text" disabled #type placeholder="Тип груза">
+</form>
+<button *ngIf="!editGood"
+        (click)="addGood(name.value, weight.value, type.value)"
+        [disabled]="form.invalid">Добавить груз
+</button>
+<button
+  *ngIf="editGood"
+  (click)="editGoodInfo(name.value, weight.value, type.value, previousName.value)"
+  [disabled]="form.invalid">
+  Изменить информацию
+</button>
+<button (click)="clearForm()">Очистить форму</button>
+<div *ngIf="(goods | async) as goods">
+  <div *ngIf="goods[0]">
+
+    <h3>Список добавленных грузов</h3>
+    <div id="gridHead">
+      <h4>Название</h4>
+      <h4>Вес(кг)</h4>
+      <h4>Тип</h4>
+      <h4>Действия</h4>
+    </div>
+    <div class="good" *ngFor="let good of goods">
+      <h4>{{good.name}}</h4>
+      <h4>{{good.weight}}</h4>
+      <h4>{{good.type}}</h4>
+      <h4 class="goodActions">
+        <button (click)="editGood = true; previousName.value = good.name">Редактировать</button>
+        <button (click)="deleteGood(good.name)">Удалить</button>
+      </h4>
+    </div>
+  </div>
+</div>
