@@ -64,6 +64,14 @@ export class DatabaseService {
     }, {merge: true});
   }
 
+  static add(x: string, y: string): string;
+  static add(x: number, y: number): number;
+
+  static add(x: any, y: any): any {
+    return x + y;
+  }
+
+
   deleteGood(name: string) {
     this.db.collection<Good>('goods').doc(name).delete();
   }
