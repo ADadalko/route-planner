@@ -13,7 +13,7 @@ export class LoginService {
       .then(res=>{
         localStorage.setItem('userCourse', JSON.stringify(res.user.email))
       }).catch((error)=>{
-        alert(error)
+        alert('Ошибка аутентификации')
       })
   }
 }
